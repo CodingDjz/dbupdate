@@ -35,7 +35,7 @@ public class SQLOpt {
 	}
 
 	/**
-	 * ½âÎöExportSQL.sqlÎÄ¼ş
+	 * è§£æExportSQL.sqlæ–‡ä»¶
 	 */
 	public void parseExportSQL() {
 		try {
@@ -45,24 +45,24 @@ public class SQLOpt {
 				fieldCount++;
 				String trimLine = thisLine.trim();
 				writeTitleInfo();
-				// ÉèÖÃ±íÃû
+				// è®¾ç½®è¡¨å
 				if (trimLine.startsWith("CREATE TABLE")) {
 					fieldCount = 0;
 					thisTableName = setTableName().toLowerCase();
 					table = tablesMap.get(thisTableName);
 				}
-				// ±í²»ĞèÒªĞŞ¸Ä
+				// è¡¨ä¸éœ€è¦ä¿®æ”¹
 				if (table == null) {
 					if (trimLine.contains(thisTableName)
 							&& trimLine.startsWith("INSERT INTO ")) {
 						pw.println(thisLine);
 					}
-					// ±íĞèÒªĞŞ¸Ä
+					// è¡¨éœ€è¦ä¿®æ”¹
 				} else {
-					// ¶¨Î»ĞŞ¸ÄÏî
+					// å®šä½ä¿®æ”¹é¡¹
 					if (trimLine.startsWith("`")) {
 						processInfo(table);
-						// ´¦ÀíÊı¾İ
+						// å¤„ç†æ•°æ®
 					} else if (trimLine.contains(thisTableName)
 							&& trimLine.startsWith("INSERT INTO ")) {
 						HashMap<String, List<String>> listsMap = processDataArray(table);
@@ -87,7 +87,7 @@ public class SQLOpt {
 	}
 
 	/**
-	 * Ğ´ÈësqlÎÄ¼şÍ·ĞÅÏ¢£¬Ò»Ğ©ÅäÖÃĞÅÏ¢
+	 * å†™å…¥sqlæ–‡ä»¶å¤´ä¿¡æ¯ï¼Œä¸€äº›é…ç½®ä¿¡æ¯
 	 */
 	private void writeTitleInfo() {
 		if ("tableNameTitle".equals(thisTableName)) {
@@ -97,7 +97,7 @@ public class SQLOpt {
 	}
 
 	/**
-	 * ÉèÖÃ±íÃû
+	 * è®¾ç½®è¡¨å
 	 */
 	private String setTableName() {
 		return thisLine.substring(thisLine.indexOf("`") + 1,
@@ -106,9 +106,9 @@ public class SQLOpt {
 	}
 
 	/**
-	 * »ñµÃÊı¾İÊı×é
+	 * è·å¾—æ•°æ®æ•°ç»„
 	 * 
-	 * @return Êı×é
+	 * @return æ•°ç»„
 	 */
 	private String[] getDataArray() {
 		String dataStr = thisLine.substring(thisLine.indexOf("S (") + 3,
@@ -118,34 +118,34 @@ public class SQLOpt {
 	}
 
 	/**
-	 * »ñµÃ×Ö¶ÎÃûÊı×é
+	 * è·å¾—å­—æ®µåæ•°ç»„
 	 *
 	 */
 	public String[] getFieldNameArray() {
-		System.out.println("ÕıÔÚ´¦Àí±í£º" + thisTableName);
+		System.out.println("æ­£åœ¨å¤„ç†è¡¨ï¼š" + thisTableName);
 		String fieldNameStr = thisLine.substring(thisLine.indexOf("` (") + 3,
 				thisLine.indexOf(") V"));
 		return fieldNameStr.split(",");
 	}
 
 	/**
-	 * ¸ù¾İ±í½á¹¹½øĞĞÅäÖÃ
+	 * æ ¹æ®è¡¨ç»“æ„è¿›è¡Œé…ç½®
 	 * 
 	 * @param table
 	 */
 	private void processInfo(Table table) {
 		String thisFieldName = thisLine.substring(thisLine.indexOf("`") + 1,
 				thisLine.lastIndexOf("`")).toLowerCase();
-		// µ±Ç°×Ö¶ÎĞÅÏ¢(´ËĞĞ)
+		// å½“å‰å­—æ®µä¿¡æ¯(æ­¤è¡Œ)
 		FieldInfo fieldInfo = table.getField(thisFieldName);
-		// ×Ö¶ÎÒÑ´æÔÚ ĞèÒªĞŞ¸Ä£¬Ôö¼Ó×Ö¶Î×ø±ê
+		// å­—æ®µå·²å­˜åœ¨ éœ€è¦ä¿®æ”¹ï¼Œå¢åŠ å­—æ®µåæ ‡
 		if (fieldInfo != null) {
 			fieldInfo.setIndex(String.valueOf(fieldCount));
 		}
 	}
 
 	/**
-	 * ´¦ÀíÉ¾¸ÄÊı¾İÊı×é
+	 * å¤„ç†åˆ æ”¹æ•°æ®æ•°ç»„
 	 * 
 	 * @param table
 	 * @return
@@ -154,12 +154,12 @@ public class SQLOpt {
 		HashMap<String, List<String>> listsMap = new HashMap<String, List<String>>();
 		String[] dataArray = getDataArray();
 		String[] fieldNameArray = getFieldNameArray();
-		// ´Ë±íËùÓĞĞèÒªĞŞ¸ÄµÄ×Ö¶Î
+		// æ­¤è¡¨æ‰€æœ‰éœ€è¦ä¿®æ”¹çš„å­—æ®µ
 		HashMap<String, FieldInfo> infoMap = table.getFiledsMap();
 		for (Map.Entry<String, FieldInfo> entry : infoMap.entrySet()) {
 			FieldInfo fieldInfo = entry.getValue();
 			String operation = fieldInfo.getOperation();
-			//Ôö¼Ó²Ù×÷ÔòÌø¹ı ÒòÎª´Ë´¦Ö»ĞŞ¸ÄÒÑÓĞ×Ö¶Î
+			//å¢åŠ æ“ä½œåˆ™è·³è¿‡ å› ä¸ºæ­¤å¤„åªä¿®æ”¹å·²æœ‰å­—æ®µ
 			if (operation.equalsIgnoreCase("add"))
 				continue;
 			String fieldName = fieldInfo.getFieldName();
@@ -167,9 +167,9 @@ public class SQLOpt {
 			String index = fieldInfo.getIndex();
 			int dataindex = Integer.parseInt(index) - 1;
 			String thisData = dataArray[dataindex];
-			// ×Ö¶ÎÃûÊÇ·ñĞŞ¸Ä
+			// å­—æ®µåæ˜¯å¦ä¿®æ”¹
 			fieldName = newName == null ? fieldName : newName;
-			// ½øĞĞĞŞ¸Ä
+			// è¿›è¡Œä¿®æ”¹
 			switch (operation) {
 			case "delete":
 				dataArray[dataindex] = null;
@@ -213,7 +213,7 @@ public class SQLOpt {
 	}
 
 	/**
-	 * ´¦ÀíaddÊı¾İ
+	 * å¤„ç†addæ•°æ®
 	 * 
 	 * @param dataList
 	 * @param table
@@ -223,19 +223,19 @@ public class SQLOpt {
 	private String processInsertList(List<String> dataList,
 			List<String> fieldNameList, Table table) throws IOException {
 		HashMap<String, FieldInfo> infoMap = table.getFiledsMap();
-		// Ôö¼Ó×Ö¶Î²Ù×÷·½·¨
+		// å¢åŠ å­—æ®µæ“ä½œæ–¹æ³•
 		for (Map.Entry<String, FieldInfo> entry : infoMap.entrySet()) {
 			FieldInfo fieldInfo = entry.getValue();
 			String operation = fieldInfo.getOperation();
 			String value = fieldInfo.getValue();
 			String addValue = value == null ? "''" : value;
-			// Ôö¼Ó
+			// å¢åŠ 
 			if (operation.equalsIgnoreCase("add")) {
 				String fieldName = fieldInfo.getFieldName();
 				String nameData = null;
 				/**
-				 * ´Ë´¦ÌØÊâ´¦ÀíÔö¼ÓÊı¾İµÄÖµ
-				 * ×ÔĞĞĞŞ¸Ä
+				 * æ­¤å¤„ç‰¹æ®Šå¤„ç†å¢åŠ æ•°æ®çš„å€¼
+				 * è‡ªè¡Œä¿®æ”¹
 				 */
 				switch (fieldName.toLowerCase()) {
 				case "value":
@@ -246,12 +246,12 @@ public class SQLOpt {
 				fieldNameList.add("`" + fieldName + "`");
 			}
 		}
-		// ÏÈaddÔÚÉèÖµ
+		// å…ˆaddåœ¨è®¾å€¼
 		return getModifyLine(dataList, fieldNameList);
 	}
 
 	/**
-	 * »ñµÃĞŞ¸ÄºóµÄÊä³öĞĞ
+	 * è·å¾—ä¿®æ”¹åçš„è¾“å‡ºè¡Œ
 	 * 
 	 * @param dataList
 	 * @return

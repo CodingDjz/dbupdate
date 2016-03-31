@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/src/person/djz/mysql/dao/Dao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/person/djz/mysql/load/ReadConf.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/person/djz/mysql/load/Tools.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/person/djz/mysql/opt/SQLOpt.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/person/djz/mysql/ui/MyFrame.java" charset="UTF-8" />
+  </component>
 </project>

@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Dao {
 
 	/**
-	 * Á¬½ÓoldDBÊı¾İ¿â
+	 * è¿æ¥oldDBæ•°æ®åº“
 	 * 
 	 * @return
 	 */
@@ -21,14 +21,14 @@ public class Dao {
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/oldDB", "root", "");
 		} catch (Exception e) {
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü");
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥");
 			e.printStackTrace();
 		}
 		return conn;
 	}
 
 	/**
-	 * Á¬½ÓnewDBÊı¾İ¿â
+	 * è¿æ¥newDBæ•°æ®åº“
 	 *
 	 * @return
 	 */
@@ -39,14 +39,14 @@ public class Dao {
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/newDB", "root", "");
 		} catch (Exception e) {
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü");
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥");
 			e.printStackTrace();
 		}
 		return conn;
 	}
 
 //	/**
-//	 * ¶ÁÈ¡Êı¾İ¿âmysql4.1ÄÚÈİ
+//	 * è¯»å–æ•°æ®åº“mysql4.1å†…å®¹
 //	 */
 //	public HashMap<String, String> getTableDataMap(Connection conn) {
 //		HashMap<String, String> map = new HashMap<String, String>();
@@ -66,7 +66,7 @@ public class Dao {
 	
 
 	/**
-	 * ¹Ø±ÕÁ÷
+	 * å…³é—­æµ
 	 * @param conn
 	 */
 

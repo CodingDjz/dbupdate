@@ -12,7 +12,7 @@ public class Tools {
 	private static File thisFile = new File(thisPath);
 	
 	/**
-	 * »ñµÃµ±Ç°ÎÄ¼şÂ·¾¶
+	 * è·å¾—å½“å‰æ–‡ä»¶è·¯å¾„
 	 * @param fileName
 	 * @return
 	 * @throws IOException
@@ -25,7 +25,7 @@ public class Tools {
 		File sqlFile = new File(filePath);
 //		if ((!sqlFile.exists()) && ("ExportSQL".equals(fileName))) {
 //			JOptionPane
-//					.showMessageDialog(null, "Ã»ÓĞ·Åµ½ÕıÈ·µÄÄ¿Â¼ÏÂ£¬Çë¼ì²éºóÖØÊÔ¡£", "Â·¾¶´íÎó", 0);
+//					.showMessageDialog(null, "æ²¡æœ‰æ”¾åˆ°æ­£ç¡®çš„ç›®å½•ä¸‹ï¼Œè¯·æ£€æŸ¥åé‡è¯•ã€‚", "è·¯å¾„é”™è¯¯", 0);
 //			System.exit(-1);
 //		} 
 //		JOptionPane.showConfirmDialog(null, thisFile.getPath()+"--"+new File(System.getProperty("user.dir")));
@@ -37,7 +37,7 @@ public class Tools {
 	}
 	
 	public static String getRootPath(){
-		String path = System.getProperty("user.dir");//¿ª·¢»·¾³¸ùÄ¿Â¼
+		String path = System.getProperty("user.dir");//å¼€å‘ç¯å¢ƒæ ¹ç›®å½•
 //		String path =thisFile.getParentFile().getParent();
 		return path;
 	}

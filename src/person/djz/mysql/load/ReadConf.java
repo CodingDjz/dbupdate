@@ -52,7 +52,7 @@ public class ReadConf {
 	}
 
 //	/**
-//	 * »ñµÃÄ³±íÊı¾İ£¬½øĞĞ²Ù×÷
+//	 * è·å¾—æŸè¡¨æ•°æ®ï¼Œè¿›è¡Œæ“ä½œ
 //	 *
 //	 * @return
 //	 */
@@ -67,7 +67,7 @@ public class ReadConf {
 	}
 
 	/**
-	 * »ñµÃÊä³öÁ÷
+	 * è·å¾—è¾“å‡ºæµ
 	 * 
 	 * @return
 	 * @throws FileNotFoundException
@@ -80,7 +80,7 @@ public class ReadConf {
 	}
 
 	/**
-	 * ¶ÁÉ¾³ıÅäÖÃÎÄ¼ş
+	 * è¯»åˆ é™¤é…ç½®æ–‡ä»¶
 	 */
 	public List<String> getDeleteTables() {
 		Properties alterProp = new Properties();
@@ -92,14 +92,14 @@ public class ReadConf {
 			for (String delTable : delTablesArr)
 				delTabsList.add(delTable);
 		} catch (Exception e) {
-			System.out.println("½âÎöÅäÖÃÎÄ¼ş´íÎó£¡");
+			System.out.println("è§£æé…ç½®æ–‡ä»¶é”™è¯¯ï¼");
 			e.printStackTrace();
 		}
 		return delTabsList;
 	}
 
 	/**
-	 * ¶ÁĞŞ¸ÄÅäÖÃÎÄ¼ş
+	 * è¯»ä¿®æ”¹é…ç½®æ–‡ä»¶
 	 */
 	public Element getXMLRoot() {
 		Element root = null;
@@ -109,14 +109,14 @@ public class ReadConf {
 					+ File.separator + "ALTER.xml"));
 			root = doc.getRootElement();
 		} catch (Exception e) {
-			System.out.println("½âÎöXMLÎÄ¼ş´íÎó!");
+			System.out.println("è§£æXMLæ–‡ä»¶é”™è¯¯!");
 			e.printStackTrace();
 		}
 		return root;
 	}
 
 	/**
-	 * »ñµÃ±íÃû
+	 * è·å¾—è¡¨å
 	 * 
 	 * @return
 	 */
@@ -124,29 +124,29 @@ public class ReadConf {
 		HashMap<String, Table> tablesMap = new HashMap<String, Table>();
 		Element root = getXMLRoot();
 		Iterator<Element> tableIt = root.elementIterator();
-		// ±éÀú±í
+		// éå†è¡¨
 		while (tableIt.hasNext()) {
 			Element tableEle = tableIt.next();
-			// »ñµÃ±íÃû
+			// è·å¾—è¡¨å
 			String tableName = tableEle.getName();
 			Iterator<Element> fieldIt = tableEle.elementIterator();
 			Table table = new Table();
 			FieldInfo fieldInfo = null;
-			// ±éÀú±íÖĞ×Ö¶Î
+			// éå†è¡¨ä¸­å­—æ®µ
 			while (fieldIt.hasNext()) {
 				Element fieldEle = fieldIt.next();
-				// »ñµÃ×Ö¶ÎÃû
+				// è·å¾—å­—æ®µå
 				String fieldName = fieldEle.getName();
 				String operation = fieldEle.attributeValue("operation");
 				String newName = fieldEle.attributeValue("newName");
 				String value = fieldEle.attributeValue("value");
 				// String index = operation.equals("add") ? "1" : "-1";
-				// info¶ÔÏó
+				// infoå¯¹è±¡
 				fieldInfo = new FieldInfo(fieldName, operation);
-				//ÉèÖÃĞÂÃû³Æ
+				//è®¾ç½®æ–°åç§°
 				if (newName != null)
 					fieldInfo.setNewName(newName);
-				//ÉèÖÃÄ¬ÈÏÖµ
+				//è®¾ç½®é»˜è®¤å€¼
 				if (value != null)
 					fieldInfo.setValue(value);
 				table.setField(fieldName.toLowerCase(), fieldInfo);

@@ -31,21 +31,21 @@ public class MyFrame extends JFrame {
 	JPanel newLineJP = new JPanel();
 	JFileChooser jfc = new JFileChooser();
 	JDialog jd = new JDialog();
-	JButton oldBtn = new JButton("ä¯ÀÀ");
-	JButton newBtn = new JButton("ä¯ÀÀ");
-	JLabel oldLabel = new JLabel("Ô´DBÂ·¾¶£º");
-	JLabel newLabel = new JLabel("ËŞDBÂ·¾¶£º");
+	JButton oldBtn = new JButton("æµè§ˆ");
+	JButton newBtn = new JButton("æµè§ˆ");
+	JLabel oldLabel = new JLabel("æºDBè·¯å¾„ï¼š");
+	JLabel newLabel = new JLabel("å®¿DBè·¯å¾„ï¼š");
 	JTextField oldtext = new JTextField(15);
 	JTextField newtext = new JTextField(15);
 	JLabel currInfo = new JLabel();
 	JPanel btnPanel = new JPanel();
-	JButton exportBtn = new JButton("µ¼³öÊı¾İ");
-	JButton processBtn = new JButton("´¦ÀíÊı¾İ");
-	JButton importBtn = new JButton("µ¼ÈëÊı¾İ");
+	JButton exportBtn = new JButton("å¯¼å‡ºæ•°æ®");
+	JButton processBtn = new JButton("å¤„ç†æ•°æ®");
+	JButton importBtn = new JButton("å¯¼å…¥æ•°æ®");
 	Runtime rt = Runtime.getRuntime();
 
 	public MyFrame() {
-		setTitle("DBÉı¼¶³ÌĞò");
+		setTitle("DBå‡çº§ç¨‹åº");
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setMyFrameLayout();
@@ -68,11 +68,11 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * ²¼¾Ö
+	 * å¸ƒå±€
 	 */
 	public void setMyFrameLayout() {
 		/*
-		 * ÒÔĞĞÎªµ¥Î»²¼¾Ö
+		 * ä»¥è¡Œä¸ºå•ä½å¸ƒå±€
 		 */
 		oldLineJP.add(oldLabel);
 		oldLineJP.add(oldtext);
@@ -87,13 +87,13 @@ public class MyFrame extends JFrame {
 		add(jp);
 		jd.add(jfc);
 		/*
-		 * ÉÏ·½Ñ¡ÔñÂ·¾¶JP²¼¾Ö
+		 * ä¸Šæ–¹é€‰æ‹©è·¯å¾„JPå¸ƒå±€
 		 */
 		pathJP.setLayout(new GridLayout(2, 1));
 		pathJP.add(oldLineJP);
 		pathJP.add(newLineJP);
 		/*
-		 * ÏÂ·½°´Å¥JP²¼¾Ö
+		 * ä¸‹æ–¹æŒ‰é’®JPå¸ƒå±€
 		 */
 		btnPanel.add(exportBtn);
 		btnPanel.add(processBtn);
@@ -102,7 +102,7 @@ public class MyFrame extends JFrame {
 		optJP.add(currInfo);
 		optJP.add(btnPanel);
 		/*
-		 * ÕûÌå²¼¾Ö
+		 * æ•´ä½“å¸ƒå±€
 		 */
 		jp.setLayout(new GridLayout(2, 1));
 		jp.add(pathJP);
@@ -111,14 +111,14 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * ÀÏDB¡°ä¯ÀÀ¡±°´Å¥¼àÌıÆ÷
+	 * è€DBâ€œæµè§ˆâ€æŒ‰é’®ç›‘å¬å™¨
 	 */
 	public void oldBtnListener() {
 		oldBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				jfc.setApproveButtonText("Ñ¡Ôñ");
+				jfc.setApproveButtonText("é€‰æ‹©");
 				int clickNum = jfc.showOpenDialog(null);
 				if (clickNum == jfc.APPROVE_OPTION) {
 					String p = jfc.getSelectedFile().getPath();
@@ -132,7 +132,7 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * ĞÂDB¡°ä¯ÀÀ¡±°´Å¥¼àÌıÆ÷
+	 * æ–°DBâ€œæµè§ˆâ€æŒ‰é’®ç›‘å¬å™¨
 	 */
 	public void newBtnListener() {
 		newBtn.addActionListener(new ActionListener() {
@@ -140,7 +140,7 @@ public class MyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				jfc.setApproveButtonText("Ñ¡Ôñ");
+				jfc.setApproveButtonText("é€‰æ‹©");
 				int clickNum = jfc.showOpenDialog(null);
 				if (clickNum == jfc.APPROVE_OPTION) {
 					String p = jfc.getSelectedFile().getPath();
@@ -153,7 +153,7 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * µ¼³ö°´Å¥¼àÌı
+	 * å¯¼å‡ºæŒ‰é’®ç›‘å¬
 	 */
 	public void exportBtnListener() {
 		exportBtn.addActionListener(new ActionListener() {
@@ -164,7 +164,7 @@ public class MyFrame extends JFrame {
 					public void run() {
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								currInfo.setText("ÕıÔÚµ¼³öÊı¾İ...");
+								currInfo.setText("æ­£åœ¨å¯¼å‡ºæ•°æ®...");
 								setBtnEnable(false);
 							}
 						});
@@ -180,7 +180,7 @@ public class MyFrame extends JFrame {
 
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								currInfo.setText("Êı¾İµ¼³öÍê³É£¡");
+								currInfo.setText("æ•°æ®å¯¼å‡ºå®Œæˆï¼");
 								setBtnEnable(true);
 							}
 						});
@@ -192,7 +192,7 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * ´¦ÀíÊı¾İ
+	 * å¤„ç†æ•°æ®
 	 */
 
 	public void processBtnListener() {
@@ -205,15 +205,15 @@ public class MyFrame extends JFrame {
 					public void run() {
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								currInfo.setText("ÕıÔÚ´¦ÀíÊı¾İ...");
+								currInfo.setText("æ­£åœ¨å¤„ç†æ•°æ®...");
 								setBtnEnable(false);
 							}
 						});
-						//´¦ÀíÊı¾İ
+						//å¤„ç†æ•°æ®
 						new SQLOpt().parseExportSQL();
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								currInfo.setText("Êı¾İ´¦ÀíÍê³É£¡");
+								currInfo.setText("æ•°æ®å¤„ç†å®Œæˆï¼");
 								setBtnEnable(true);
 							}
 						});
@@ -226,7 +226,7 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * µ¼Èë°´Å¥¼àÌı
+	 * å¯¼å…¥æŒ‰é’®ç›‘å¬
 	 */
 	public void importBtnListener() {
 		importBtn.addActionListener(new ActionListener() {
@@ -239,11 +239,11 @@ public class MyFrame extends JFrame {
 					public void run() {
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								currInfo.setText("ÕıÔÚµ¼ÈëÊı¾İ...");
+								currInfo.setText("æ­£åœ¨å¯¼å…¥æ•°æ®...");
 								setBtnEnable(false);
 							}
 						});
-						//µ¼Èë²Ù×÷						
+						//å¯¼å…¥æ“ä½œ						
 						String path = Tools.getRootPath() + File.separator
 								+ "ImportSQL.bat";
 						try {
@@ -254,7 +254,7 @@ public class MyFrame extends JFrame {
 						}
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								currInfo.setText("Êı¾İµ¼ÈëÍê³É£¡");
+								currInfo.setText("æ•°æ®å¯¼å…¥å®Œæˆï¼");
 								setBtnEnable(true);
 							}
 						});
@@ -266,7 +266,7 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * °´Å¥ÉèÖÃ
+	 * æŒ‰é’®è®¾ç½®
 	 * 
 	 * @param isenable
 	 */
@@ -279,7 +279,7 @@ public class MyFrame extends JFrame {
 	}
 
 	/**
-	 * ÉèÖÃÎÄ×Ö
+	 * è®¾ç½®æ–‡å­—
 	 * 
 	 * @param com
 	 * @param text
