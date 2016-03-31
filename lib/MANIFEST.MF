@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: person.djz.mysql.run.update
+Class-Path: mysql-connector-java-5.1.22-bin.jar dom4j-1.6.1.jar
