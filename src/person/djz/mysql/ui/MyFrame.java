@@ -1,9 +1,6 @@
 package person.djz.mysql.ui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -166,6 +163,7 @@ public class MyFrame extends JFrame {
 							public void run() {
 								currInfo.setText("正在导出数据...");
 								setBtnEnable(false);
+								setCursor(new Cursor(Cursor.WAIT_CURSOR));
 							}
 						});
 
@@ -182,6 +180,8 @@ public class MyFrame extends JFrame {
 							public void run() {
 								currInfo.setText("数据导出完成！");
 								setBtnEnable(true);
+								setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
 							}
 						});
 
@@ -207,6 +207,7 @@ public class MyFrame extends JFrame {
 							public void run() {
 								currInfo.setText("正在处理数据...");
 								setBtnEnable(false);
+								setCursor(new Cursor(Cursor.WAIT_CURSOR));
 							}
 						});
 						//处理数据
@@ -215,6 +216,7 @@ public class MyFrame extends JFrame {
 							public void run() {
 								currInfo.setText("数据处理完成！");
 								setBtnEnable(true);
+								setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}
 						});
 
@@ -241,6 +243,7 @@ public class MyFrame extends JFrame {
 							public void run() {
 								currInfo.setText("正在导入数据...");
 								setBtnEnable(false);
+								setCursor(new Cursor(Cursor.WAIT_CURSOR));
 							}
 						});
 						//导入操作						
@@ -256,6 +259,8 @@ public class MyFrame extends JFrame {
 							public void run() {
 								currInfo.setText("数据导入完成！");
 								setBtnEnable(true);
+								setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
 							}
 						});
 
