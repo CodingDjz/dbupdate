@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/dbupdate.iml" filepath="$PROJECT_DIR$/dbupdate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbupdate.iml" filepath="$PROJECT_DIR$/dbupdate.iml" />
     </modules>
   </component>
 </project>
